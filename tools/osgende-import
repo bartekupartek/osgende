@@ -110,7 +110,7 @@ class DbWriter:
         self.thread.start()
 
     def write(self, **attrs):
-        self.out_pipe.write(self.linepattern % attrs)
+        self.out_pipe.write(self.linepattern % attrs).encode('utf-8')
 
     def close(self):
         self.trans.commit()
@@ -387,4 +387,3 @@ if __name__ == '__main__':
     importer.readfile()
     if options.createindices:
         importer.create_indices()
-
